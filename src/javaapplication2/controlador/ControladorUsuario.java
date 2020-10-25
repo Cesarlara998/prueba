@@ -45,6 +45,7 @@ public class ControladorUsuario {
     
     public void eliminar(String nombre) {
         this.usuarios.removeIf(user -> user.getEmailUsuario() == nombre);
+        System.out.println("usuario eliminado");
     }
     
     public boolean actualizar(String nombre, String email, String passw) {
