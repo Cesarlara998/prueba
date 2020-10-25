@@ -7,6 +7,7 @@ package javaapplication2.controlador;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javaapplication2.modelos.Usuarios;
+import javaapplication2.controlador.*;
 /**
  *
  * @author 
@@ -14,7 +15,7 @@ import javaapplication2.modelos.Usuarios;
 
 public class ControladorUsuario {
     public ArrayList <Usuarios> usuarios = new ArrayList <Usuarios>();
- 
+    public Usuarios Usuario;
      public Boolean registro(String nombre,String passw,String email) {
          if (nombre.length() == 0) {
             return false;
@@ -64,5 +65,24 @@ public class ControladorUsuario {
             }
         }
         return false;
+    }
+    
+    public String login(String nombre, String password) {
+        
+        if (nombre.length() == 0) {
+             return "nombre requerido";
+        }
+        if (password.length() == 0) {
+            return "password requerido";
+        }
+        Iterator<Usuarios> nombreIterator = this.usuarios.iterator();
+        while (nombreIterator.hasNext()) {
+            Usuarios elemento = nombreIterator.next();
+            if (nombre == elemento.getNombreUsuario() && password == elemento.getPasswordUsuario()) {
+                this.Usuario = elemento;
+                return "LOGEADO CORRECTAMENTE";
+            }
+        }
+        return "Usuario no encontrado";
     }
 }
