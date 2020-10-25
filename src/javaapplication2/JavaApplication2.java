@@ -17,12 +17,13 @@ public class JavaApplication2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        ControladorAdministrador administrador = new ControladorAdministrador();
-        administrador.registro("correoxd123", "123");
-        administrador.registro("asd123", "1234");
+        // INICIO DATOS DE ADM
         
-        //
+        ControladorAdministrador administradores = new ControladorAdministrador();
+        administradores.registro("correoxd123", "123");
+        administradores.registro("asd123", "1234");
+        
+        // INICIO DATOS DE USUARIOS
 
         ControladorUsuario Usuarios = new ControladorUsuario();
         Usuarios.registro("cesar", "123", "correoxd123");
@@ -31,11 +32,12 @@ public class JavaApplication2 {
         //Usuarios.eliminar("juan");
         //Usuarios.actualizar("cesar","cesar123", "123");
         
-        
+        // INICIO DATOS DE GALERIA
+        ControladorUsuario Galerias = new ControladorUsuario();
         
         System.out.println(Usuarios.login("cesar", "123"));
         if (Usuarios.Usuario != null) {
-            if (administrador.findOne(Usuarios.Usuario.getEmailUsuario(), Usuarios.Usuario.getPasswordUsuario()) == true){
+            if (administradores.findOne(Usuarios.Usuario.getEmailUsuario(), Usuarios.Usuario.getPasswordUsuario()) == true){
                 System.out.println("ES ADM");
             }else {
                 System.out.println("NO ES ADM");

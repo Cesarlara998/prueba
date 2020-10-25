@@ -43,7 +43,6 @@ public class ControladorGaleria {
                 System.out.println("Galeria actualizada");
                 return;
             }
-            //return elemento.getEmailUsuario();
         }
         System.out.println("Galeria no encontrada");
     }
