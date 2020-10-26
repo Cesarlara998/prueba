@@ -31,20 +31,37 @@ public class ControladorUsuario {
         user.setNombreUsuario(nombre);
         user.setPasswordUsuario(passw);
         usuarios.add(user);
+        System.out.println("USUARIO CREADO");
         return true;
     }
-     
+         public void MostrarUsuario(String nombre) {
+        Iterator<Usuarios> nombreIterator = this.usuarios.iterator();
+        int Contador = 0;
+        while (nombreIterator.hasNext()) {
+            Contador++;
+            Usuarios elemento = nombreIterator.next();
+            if (elemento.getNombreUsuario().equals(nombre)) {
+                System.out.println("--------------------");
+                System.out.println("USUARIO NUMERO: " + Contador);
+                System.out.println("USUARIO NOMBRE: " + elemento.getNombreUsuario());
+                System.out.println("USUARIO CORREO: " + elemento.getPasswordUsuario());
+                System.out.println("--------------------");
+            }
+        }
+    }
     public void listar(){
         Iterator<Usuarios> nombreIterator = this.usuarios.iterator();
         while (nombreIterator.hasNext()) {
             Usuarios elemento = nombreIterator.next();
-            System.out.println(elemento.getEmailUsuario());
+            System.out.println("--------------------");
+            System.out.println("NOMBRE: " + elemento.getNombreUsuario());
+            System.out.println("CORREO: "+ elemento.getEmailUsuario());
             //return elemento.getEmailUsuario();
         }
     }
     
     public void eliminar(String nombre) {
-        this.usuarios.removeIf(user -> user.getEmailUsuario() == nombre);
+        this.usuarios.removeIf(user -> user.getEmailUsuario().equals(nombre) );
         System.out.println("usuario eliminado");
     }
     
@@ -59,7 +76,7 @@ public class ControladorUsuario {
         Iterator<Usuarios> nombreIterator = this.usuarios.iterator();
         while (nombreIterator.hasNext()) {
             Usuarios elemento = nombreIterator.next();
-            if (nombre == elemento.getNombreUsuario()) {
+            if (nombre.equals(elemento.getNombreUsuario())) {
                 elemento.setEmailUsuario(email);
                 elemento.setPasswordUsuario(passw);
                 return true;
@@ -69,17 +86,17 @@ public class ControladorUsuario {
     }
     
     public String login(String nombre, String password) {
-        
         if (nombre.length() == 0) {
              return "nombre requerido";
         }
         if (password.length() == 0) {
             return "password requerido";
         }
+        System.out.println(password);
         Iterator<Usuarios> nombreIterator = this.usuarios.iterator();
         while (nombreIterator.hasNext()) {
             Usuarios elemento = nombreIterator.next();
-            if (nombre == elemento.getNombreUsuario() && password == elemento.getPasswordUsuario()) {
+            if (nombre.equals(elemento.getNombreUsuario()) && password.equals(elemento.getPasswordUsuario())) {
                 this.Usuario = elemento;
                 return "LOGEADO CORRECTAMENTE";
             }

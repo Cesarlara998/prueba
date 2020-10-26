@@ -32,13 +32,13 @@ public class ControladorGaleria {
     }
 
     /* Update de galeria   array 1 = nombre, 2 = ubicacion*/
-    public void ActualizarGaleria(String nombreActual, String[] Datosnuevos) {
+    public void ActualizarGaleria(String nombreActual, String nombrenuevo, String ubicacionnuevo) {
         Iterator<Galeria> nombreIterator = this.Galerias.iterator();
         while (nombreIterator.hasNext()) {
             Galeria elemento = nombreIterator.next();
-            if (elemento.getNombreGaleria() == nombreActual) {
-                elemento.setNombreGaleria(Datosnuevos[1]);
-                elemento.setUbicacionGaleria(Datosnuevos[2]);
+            if (elemento.getNombreGaleria().equals(nombreActual)) {
+                elemento.setNombreGaleria(nombrenuevo);
+                elemento.setUbicacionGaleria(ubicacionnuevo);
 
                 System.out.println("Galeria actualizada");
                 return;
@@ -49,7 +49,7 @@ public class ControladorGaleria {
 
     /* Eliminar galeria*/
     public void EliminarGaleria(String nombre) {
-        this.Galerias.removeIf(Galeria -> Galeria.getNombreGaleria() == nombre);
+        this.Galerias.removeIf(Galeria -> Galeria.getNombreGaleria().equals(nombre));
         System.out.println("Galeria eliminada");
     }
 
@@ -61,7 +61,7 @@ public class ControladorGaleria {
         while (nombreIterator.hasNext()) {
             Contador++;
             Galeria elemento = nombreIterator.next();
-            if (elemento.getNombreGaleria() == nombre) {
+            if (elemento.getNombreGaleria().equals(nombre)) {
                 System.out.println("--------------------");
                 System.out.println("Galeria numero: " + Contador);
                 System.out.println("Galeria Nombre: " + elemento.getNombreGaleria());
@@ -71,7 +71,7 @@ public class ControladorGaleria {
         }
     }
     /*Mostrar  todas las galerias*/
-    public void ListarGalerias(String nombre) {
+    public void ListarGalerias() {
         Iterator<Galeria> nombreIterator = this.Galerias.iterator();
         int Contador = 0;
         while (nombreIterator.hasNext()) {
