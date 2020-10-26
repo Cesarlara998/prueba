@@ -39,47 +39,52 @@ public class JavaApplication2 {
         System.out.println("INGRESE clave");
         String clave = sc.nextLine();
         System.out.println(Usuarios.login(usuario, clave));
-        while (Usuarios.Usuario != null) {
-            if (administradores.findOne(Usuarios.Usuario.getEmailUsuario(), Usuarios.Usuario.getPasswordUsuario()) == true) {
-                boolean end = true;
-                while (end == true) {
-                    System.out.println("MENU DE ADMINISTRADOR");
-                    System.out.println("----------------------------------");
-                    System.out.println("----------------------------------");
-                    System.out.println("1 - PARA CREAR GALERIA          --");
-                    System.out.println("2 - PARA VER GALERIA            --");
-                    System.out.println("3 - PARA MOSTRAR GALERIAS       --");
-                    System.out.println("4 - PARA ACTUALIZAR GALERIAS    --");
-                    System.out.println("5 - PARA ELIMINAR GALERIAS      --");
-                    System.out.println("----------------------------------");
-                    System.out.println("6 - PARA CREAR USUARIOS         --");
-                    System.out.println("7 - PARA VER USUARIO           --");
-                    System.out.println("8 - PARA MOSTRAR USUARIOS       --");
-                    System.out.println("9 - PARA ACTUALIZAR USUARIOS    --");
-                    System.out.println("10 - PARA ELIMINAR USUARIOS     --");
-                    System.out.println("----------------------------------");
-                    System.out.println("0 - PARA DESLOGEARSE            --");
-                    System.out.println("12 - PARA SALIR DEL PROGRAMA    --");
-                    System.out.println("----------------------------------");
-                    System.out.println("----------------------------------");
+        boolean end = false;
+        while (!end) {
+            if (Usuarios.Usuario == null) {
+                System.out.println("INGRESE USUARIO");
+                usuario = sc.nextLine();
+                System.out.println("INGRESE clave");
+                clave = sc.nextLine();
+                System.out.println(Usuarios.login(usuario, clave));
+            } else {
+                /*MAIN CODE*/
+                if (administradores.findOne(Usuarios.Usuario.getEmailUsuario(), Usuarios.Usuario.getPasswordUsuario()) == true) {
+
+                    //ES ADMINISTRADOR
+                    System.out.println("------------------------------------");
+                    System.out.println("------------------------------------");
+                    System.out.println("-------MENU DE ADMINISTRADOR--------");
+                    System.out.println("------------------------------------");
+                    System.out.println("------------------------------------");
+                    System.out.println("1 - PARA CREAR GALERIA            --");
+                    System.out.println("2 - PARA VER GALERIA              --");
+                    System.out.println("3 - PARA MOSTRAR GALERIAS         --");
+                    System.out.println("4 - PARA ACTUALIZAR GALERIAS      --");
+                    System.out.println("5 - PARA ELIMINAR GALERIAS        --");
+                    System.out.println("------------------------------------");
+                    System.out.println("6 - PARA CREAR USUARIOS           --");
+                    System.out.println("7 - PARA VER USUARIO              --");
+                    System.out.println("8 - PARA MOSTRAR USUARIOS         --");
+                    System.out.println("9 - PARA ACTUALIZAR USUARIOS      --");
+                    System.out.println("10 - PARA ELIMINAR USUARIOS       --");
+                    System.out.println("------------------------------------");
+                    System.out.println("11 - PARA CREAR ADMINISTRADOR     --");
+                    System.out.println("12 - PARA VER ADMINISTRADOR       --");
+                    System.out.println("13 - PARA MOSTRAR ADMINISTRADORES --");
+                    System.out.println("------------------------------------");
+                    System.out.println("0  -     PARA DESLOGEARSE         --");
+                    System.out.println("14 - PARA SALIR DEL PROGRAMA      --");
+                    System.out.println("------------------------------------");
+                    System.out.println("------------------------------------");
                     String opcionpre = sc.nextLine();
                     int opcion = Integer.parseInt(opcionpre);
                     switch (opcion) {
-                        case 12:
+                        case 14:
                             System.exit(0);
                             break;
                         case 0:
                             Usuarios.Usuario = null;
-                            System.out.println("INGRESE USUARIO");
-                            sc = new Scanner(System.in);
-                            usuario = sc.nextLine();
-                            System.out.println("INGRESE clave");
-                            clave = sc.nextLine();
-                            System.out.println(Usuarios.login(usuario, clave));
-                            if (Usuarios.login(usuario, clave).equals("Usuario no encontrado")) {
-                                System.exit(0);
-                            }
-                            end = false;
                             break;
                         case 1:
                             System.out.println("INGRESE NOMBRE");
@@ -126,12 +131,11 @@ public class JavaApplication2 {
                             sc.nextLine();
                             break;
                         case 7:
-                            System.out.println("INGRESE NUEVO NOMBRE");
+                            System.out.println("INGRESE NOMBRE");
                             Usuarios.MostrarUsuario(sc.nextLine());
                             sc.nextLine();
                             break;
                         case 8:
-
                             Usuarios.listar();
                             sc.nextLine();
                             break;
@@ -142,18 +146,90 @@ public class JavaApplication2 {
                             coreo = sc.nextLine();
                             System.out.println("INGRESE NUEVA CONTRASEÑA DE USUARIO");
                             passw = sc.nextLine();
-                            Usuarios.actualizar(nombre, clave, passw);
+                            if (Usuarios.actualizar(nombre, clave, passw) == true) {
+                                System.out.println("USUARIO ACTUALIZADO");
+                                if (administradores.actualizar(Usuarios.Select.getEmailUsuario(), Usuarios.Select.getPasswordUsuario()) == true){
+                                    System.out.println("ADMINISTRADOR ACTUALIZADO");
+                                }
+                            }else {
+                                System.out.println("NO SE LOGRO ACTUALIZAR EL USUARIO");
+                            }
                             sc.nextLine();
                             break;
                         case 10:
                             System.out.println("INGRESE NOMBRE DE USUARIO A ELIMINAR");
                             Usuarios.eliminar(sc.nextLine());
+                            break;
+                            
+                        case 11:
+                             System.out.println("INGRESE NOMBRE");
+                             nombre = sc.nextLine();
+                            if (Usuarios.MostrarUsuario(nombre) == false){
+                                System.out.println("NO EXISTE USUARIO CON ESE NOMBRE DE USUARIO REGISTRADO");
+                                nombre = sc.nextLine();
+                            } else {
+                                administradores.registro(Usuarios.Select.getEmailUsuario(),Usuarios.Select.getPasswordUsuario());
+                                System.out.println("CUENTA DE USUARIO VINCULADA A ADMINISTRADORES");
+                            }
+                            sc.nextLine();
+                            break;
+                        case 12:
+                            System.out.println("INGRESE CORREO DEL ADMINISTRADOR");
+                            administradores.MostrarAdministrador(sc.nextLine());
+                            sc.nextLine();
+                            break;
+                        case 13:
+                            administradores.listar();
+                            sc.nextLine();
+                            break;
                     }
-                }
-            } else {
-                System.out.println("NO ES ADM");
-            }
 
+                }
+
+                //ES USUARIO
+                System.out.println("------------------------------------");
+                    System.out.println("------------------------------------");
+                    System.out.println("-------MENU DE ADMINISTRADOR--------");
+                    System.out.println("------------------------------------");
+                    System.out.println("------------------------------------");
+                    System.out.println("1 - PARA VER GALERIA              --");
+                    System.out.println("2 - PARA MOSTRAR GALERIAS         --");
+                    System.out.println("------------------------------------");
+                    System.out.println("3 - PARA VER USUARIO              --");
+                    System.out.println("4 - PARA MOSTRAR USUARIOS         --");
+                    System.out.println("------------------------------------");
+                    System.out.println("0  -     PARA DESLOGEARSE         --");
+                    System.out.println("14 - PARA SALIR DEL PROGRAMA      --");
+                    System.out.println("------------------------------------");
+                    System.out.println("------------------------------------");
+                    String opcionpre = sc.nextLine();
+                    int opcion = Integer.parseInt(opcionpre);
+                     switch (opcion) {
+                        case 14:
+                            System.exit(0);
+                            break;
+                        case 0:
+                            Usuarios.Usuario = null;
+                            break;
+                        case 1:
+                            System.out.println("INGRESE NOMBRE DE GALERIA");
+                            Galerias.MostrarGaleria(sc.nextLine());
+                            sc.nextLine();
+                            break;
+                        case 2:
+                            Galerias.ListarGalerias();
+                            sc.nextLine();
+                            break;
+                        case 3:
+                            System.out.println("INGRESE NOMBRE");
+                            Usuarios.MostrarUsuario(sc.nextLine());
+                            sc.nextLine();
+                            break;
+                        case 4:
+                            Usuarios.listar();
+                            sc.nextLine();
+                            break;
+            }
         }
         //Usuarios.listar();
 

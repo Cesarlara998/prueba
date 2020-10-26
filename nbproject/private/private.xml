@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/javaapplication2/controlador/ControladorGaleria.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>73</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/cesar%7D/Documents/NetBeansProjects/JavaApplication2/src/javaapplication2/modelos/administrador.java</file>
             <file>file:/C:/Users/cesar%7D/Documents/NetBeansProjects/JavaApplication2/src/javaapplication2/controlador/ControladorUsuario.java</file>
+            <file>file:/C:/Users/cesar%7D/Documents/NetBeansProjects/JavaApplication2/src/javaapplication2/controlador/ControladorAdministrador.java</file>
             <file>file:/C:/Users/cesar%7D/Documents/NetBeansProjects/JavaApplication2/src/javaapplication2/JavaApplication2.java</file>
-            <file>file:/C:/Users/cesar%7D/Documents/NetBeansProjects/JavaApplication2/src/javaapplication2/modelos/Usuarios.java</file>
+            <file>file:/C:/Users/cesar%7D/Documents/NetBeansProjects/JavaApplication2/src/javaapplication2/controlador/ControladorGaleria.java</file>
+            <file>file:/C:/Users/cesar%7D/Documents/NetBeansProjects/JavaApplication2/src/javaapplication2/modelos/Galeria.java</file>
         </group>
     </open-files>
 </project-private>

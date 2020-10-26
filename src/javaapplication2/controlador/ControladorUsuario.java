@@ -16,6 +16,7 @@ import javaapplication2.controlador.*;
 public class ControladorUsuario {
     public ArrayList <Usuarios> usuarios = new ArrayList <Usuarios>();
     public Usuarios Usuario;
+    public Usuarios Select;
      public Boolean registro(String nombre,String passw,String email) {
          if (nombre.length() == 0) {
             return false;
@@ -34,7 +35,7 @@ public class ControladorUsuario {
         System.out.println("USUARIO CREADO");
         return true;
     }
-         public void MostrarUsuario(String nombre) {
+         public Boolean MostrarUsuario(String nombre) {
         Iterator<Usuarios> nombreIterator = this.usuarios.iterator();
         int Contador = 0;
         while (nombreIterator.hasNext()) {
@@ -46,8 +47,11 @@ public class ControladorUsuario {
                 System.out.println("USUARIO NOMBRE: " + elemento.getNombreUsuario());
                 System.out.println("USUARIO CORREO: " + elemento.getPasswordUsuario());
                 System.out.println("--------------------");
+                this.Select = elemento;
+                return true;
             }
         }
+        return false;
     }
     public void listar(){
         Iterator<Usuarios> nombreIterator = this.usuarios.iterator();
@@ -79,6 +83,7 @@ public class ControladorUsuario {
             if (nombre.equals(elemento.getNombreUsuario())) {
                 elemento.setEmailUsuario(email);
                 elemento.setPasswordUsuario(passw);
+                this.Select = elemento;
                 return true;
             }
         }
